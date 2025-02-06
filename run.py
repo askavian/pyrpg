@@ -64,9 +64,6 @@ def help_menu():
     print("     Good luck and have fun!      ")
     title_screen_selections()
 
-#### GAME FUNCTIONALITY ####
-def start_game():
-
 
 #### MAP ####
 
@@ -260,3 +257,59 @@ zonemap = {
         right = ""
     },
 }
+
+
+#### GAME INTERACTIVITY ####
+def print_location():
+    print("\n" + ("#" * (4 + len(myPlayer.location)))) # "\n" prints everything on a new line / make # x 4 len(myPlayer.location) gets the LENGTH OF THE STRING of location
+    print("# " + myPlayer.location.upper() + " #")
+    print("# " + zonemap[myPlayer.location] [description] + " #")
+    print("\n" + ("#" * (4 + len(myPlayer.location))))
+
+def prompt():  ### This is where the player "does" everything
+    print("\n" + "===================")
+    print("What would you like to do?")
+    action = input("> ")
+    acceptable_actions = ["move", "go", "travel", "walk", "quit", "examine", "inspect", "interact", "look"]
+    while action.lower() not in acceptable_actions:
+        print("Unkonw action, try again.\n")
+        action = input("> ")
+    if action.lower() == "quit":
+        sys.exit()
+    elif action.lower() in ["move", "go", "travel", "walk"]:
+        player_move(action.lower())
+    elif action.lower() in ["examine", "inspect", "interact", "look"]:
+        player_examine(action.lower())
+
+def player_move(myAction):
+    ask = "Where would you like top move to?\n" # Input Question gets printet
+    dest = input(ask)
+    if dest in ["up", "north"]:
+        destination = zonemap[myPlayer.location] [up]
+        movement_handler(destination) # function defined below
+    elif dest in ["left", "west"]:
+        destination = zonemap[myPlayer.location] [left]
+        movement_handler(destination) # function defined below
+    elif dest in ["east", "right"]:
+        destination = zonemap[myPlayer.location] [right]
+        movement_handler(destination) # function defined below
+    elif dest in ["down", "south"]:
+        destination = zonemap[myPlayer.location] [down]
+        movement_handler(destination) # function defined below    
+
+
+def movement_handler(destination): # updates the movement
+    print("\n" + "You have moved to the " + destination + ".") # prints to the player a success message for movement
+    myPlayer.location = destination # sets the new location equal to the destination
+    print_location()
+
+def player_examine(action):
+    if zonemap[myPlayer.location] [solved]:
+        print("You have already exhausted this zone.")
+    else: # UP FOR EVERYTHING 
+        print("PLACEHOLDER You can trigger a puzzle here!")
+
+
+#### GAME FUNCTIONALITY ####
+def start_game():
+    return
