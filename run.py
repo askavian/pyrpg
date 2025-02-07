@@ -5,12 +5,12 @@
 # Python Text RPG
 # by Malte M. Boettcher
 
-import cmd # imports command functions
-import textwrap # displays text in wraps
+import cmd # imports command functions NOT USED ATM
+import textwrap # displays text in wraps NOT USED ATM
 import sys # imports system functions
 import os # imports operating systems functions
 import time # imports time related functions (counter, calender, clock, etc...)
-import random # randomizes 
+import random # randomizes NOT USED ATM
 
 screen_width = 100 # sets output window to full screen 100% width
 
@@ -22,7 +22,7 @@ class player:
         self.hp = 0
         self.mp = 0
         self.status_effects =[] # empty array
-        self.location = "start" # sets location maybe use for case files
+        self.location = "b2" # sets location maybe use for case files
         self.game_over = False
 myPlayer = player()
 
@@ -46,7 +46,7 @@ def title_screen_selections():
             sys.exit() # system function to exit program
 
 def title_screen():
-    os.system("clear")
+    os.system("cls") # cls for windows "clear" for mac
     print("############################")
     print("# Welcome to the Text RPG! #")
     print("############################")
@@ -321,7 +321,7 @@ def main_game_loop():
 #### SET UP GAME ####
 
 def setup_game():
-    os.system("clear")
+    os.system("cls") # cls for windows "clear" for mac
 
     ### NAME COLLECTING ###
     question1 = "Hello, what's your name?\n" # not print because everything will come naturally
@@ -344,7 +344,7 @@ def setup_game():
         sys.stdout.flush() # just works don't ask questions
         time.sleep(0.01) # gives delay to input of 1 miliseconds
     player_job = input("> ") # could directly write to myPlayer.job, but keep it seperated to eventually add functionality later
-    valid_jobs = ["warrior", "maide", "priest"]
+    valid_jobs = ["warrior", "mage", "priest"]
     if player_job.lower() in valid_jobs:
         myPlayer.job = player_job
         print("You are now a " + player_job + "!\n")
@@ -372,13 +372,11 @@ def setup_game():
         sys.stdout.write(character) # just works don't ask questions
         sys.stdout.flush() # just works don't ask questions
         time.sleep(0.05) # gives delay to input of 5 miliseconds
-    player_name = input("> ") # could directly write to myPlayer.name, but keep it seperated to eventually add functionality later
-    myPlayer.name = player_name
 
-    speech1 = "Welcome to this fantasy world!"
-    speech2 = "I hope it greets you well!"
-    speech3 = "Just make sure you don't get too lost..."
-    speech4 = "Hehehehe..."
+    speech1 = "Welcome to this fantasy world!\n"
+    speech2 = "I hope it greets you well!\n"
+    speech3 = "Just make sure you don't get too lost...\n"
+    speech4 = "Hehehehe...\n"
     for character in speech1:
         sys.stdout.write(character) 
         sys.stdout.flush() 
@@ -396,7 +394,7 @@ def setup_game():
         sys.stdout.flush()
         time.sleep(0.2) # a lot slower
     
-    os.system("clear")
+    os.system("cls") # cls for windows "clear" for mac
     print("########################")
     print("#   Let's Start now!   #")
     print("########################")
